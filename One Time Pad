@@ -1,0 +1,96 @@
+/* 
+Name     :- Hardik Raja
+Roll no  :- 24
+Subject  :- Fundamental Of Networking
+Class    :- MCA III
+
+Question :- One Time Pad
+*/
+import java.util.*;
+class CharToBin{
+  public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    System.out.println("Enter plain text : ");
+    String pltxt = sc.nextLine();
+    String temp ="";
+    String bin ="";
+    for(int i =0 ; i<pltxt.length();i++)
+    {
+      temp="";
+      temp = Integer.toBinaryString(pltxt.charAt(i));
+      if(temp.length()!=8)
+      {
+        temp = "0"+temp;
+      }
+      bin = bin+temp;
+    }
+    System.out.println(bin);
+
+    String sst="";
+    System.out.println("Enter text to be X-or : ");
+    String xori = sc.nextLine();
+    for(int i =0 ; i<pltxt.length();i++)
+    {
+      temp="";
+      temp = Integer.toBinaryString(xori.charAt(i));
+      if(temp.length()!=8)
+      {
+        temp = "0"+temp;
+      }
+      sst = sst+temp;
+    }
+    System.out.println(sst);
+
+    String xorrs = "";
+    System.out.println("X-or result :");
+    for(int j = 0 ; j<bin.length() ; j++)
+    {
+      int a = (int)(bin.charAt(j));
+      int b = (int)(sst.charAt(j));
+      xorrs = xorrs + (a^b);
+    }
+    System.out.println(xorrs);
+
+    String cipher="";
+    System.out.println("Cipher result :");
+    for(int j = 0 ; j<bin.length() ; j++)
+    {
+      int a = (int)(xorrs.charAt(j));
+      int b = (int)(sst.charAt(j));
+      cipher = cipher + (a^b);
+    }
+    System.out.println(cipher);
+
+    int k = 0;
+    String subs = "";
+    String bktost="";
+
+    System.out.println();
+    System.out.println("Original String :");
+    for(int i = 0 , j = 0; i<bin.length() ; i=i+8,j++)
+    {
+      subs = cipher.substring(k,k+8);
+      k=k+8;
+      bktost = bktost+(char)(Integer.parseInt(subs,2));
+    }
+
+    System.out.println(bktost);
+  }
+}
+
+/*Output :-
+I:\work\fo_n>java CharToBin
+Enter plain text :
+india
+0110100101101110011001000110100101100001
+Enter text to be X-or :
+nepal
+0110111001100101011100000110000101101100
+X-or result :
+0000011100001011000101000000100000001101
+Cipher result :
+0110100101101110011001000110100101100001
+
+Original String :
+india
+*/
