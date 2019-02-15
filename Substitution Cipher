@@ -1,0 +1,120 @@
+/* 
+Name     :- Hardik Raja
+Roll no  :- 24
+Subject  :- Fundamental Of Networking
+Class    :- MCA III
+
+Question :- Substitution Cipher
+*/
+import java.util.*;
+class Subs{
+	public static void main(String arg[])
+	{
+		char[] atoz = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','1','2','3','4','5','6','7','8','9','0'};
+
+		char[] ntxt = {'q','w','e','r','t','y','u','i','o','p','a','s','d','f','g','h','j','k','l','z','x','c','v','b','n','m','7','8','9','6','5','4','3','2','1','$'};
+
+		Scanner sc = new Scanner(System.in);
+		char temp;
+		String cipst = "";
+		String ptext = "";
+		int ch;
+		boolean flag = true;
+		System.out.println("Enter your choice : ");
+		System.out.println("1: Encryption.");
+		System.out.println("2: Decryption.");
+		System.out.println("Enter here - ");
+		Scanner sn = new Scanner(System.in);
+		ch = sn.nextInt();
+
+		switch(ch)
+		{
+
+		case 1:
+		{
+		System.out.println("Enter a string (Plain-text) :");
+		ptext = sc.nextLine();
+		for(int i = 0;i<ptext.length();i++)
+		{
+			temp = ptext.charAt(i);
+		if(Character.isLetter(temp) || Character.isDigit(temp))
+		{
+		for (int j = 0 ;j<atoz.length ;j++ ) {
+				if(temp==atoz[j])
+				{
+					cipst = cipst + ntxt[j];
+					break;
+				}
+			}
+		}
+		else if(temp ==' ')
+		{
+			cipst= cipst + " ";
+		}
+		else
+		{
+			cipst = cipst+",";
+		}
+		}
+		System.out.println(cipst);
+
+		break;
+
+		}
+
+		case 2:
+		{
+
+				System.out.println("Enter a string (Cipher-text) :");
+				 cipst = sc.nextLine();
+				for(int i = 0;i<cipst.length();i++)
+				{
+					temp = cipst.charAt(i);
+				if(Character.isLetter(temp) || Character.isDigit(temp))
+				{
+				for (int j = 0 ;j<atoz.length ;j++ ) {
+						if(temp==ntxt[j])
+						{
+							ptext = ptext + atoz[j];
+							break;
+						}
+					}
+				}
+				else if(temp ==' ')
+				{
+					ptext= ptext + " ";
+				}
+				else
+				{
+					ptext = ptext+",";
+				}
+				}
+				System.out.println(ptext);
+			}
+			break;
+		}
+	}
+}
+
+/*Output :-
+
+E:\hardik\fon>java Subs
+Enter your choice :
+1: Encryption.
+2: Decryption.
+Enter here -
+1
+Enter a string (Plain-text) :
+go to nrs lab
+ug zg fkl sqw
+
+E:\hardik\fon>java Subs
+Enter your choice :
+1: Encryption.
+2: Decryption.
+Enter here -
+2
+Enter a string (Cipher-text) :
+ug zg fkl sqw
+go to nrs lab
+*/
