@@ -1,0 +1,126 @@
+/* 
+Name     :- Hardik Raja
+Roll no  :- 24
+Subject  :- Fundamental Of Networking
+Class    :- MCA III
+
+Question :- Transposition Cipher(Encryption)
+*/
+import java.util.*;
+class Trans{
+  public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    System.out.println("Enter a key (with unique char) :");
+    String key  = sc.nextLine();
+
+    System.out.println("Enter plain Text : ");
+    String pltxt = sc.nextLine();
+
+    int kln = key.length();
+    int pln = pltxt.length();
+
+    int x = pln/kln;
+
+    double size = (double)(pln)/(kln);
+    double xdb = (double)(x);
+
+    if(size>xdb)
+    {
+      x=x+1;
+    }
+
+    char[][] mat = new char[x][kln];
+    int ml = x*kln;
+    while(pltxt.length()<=ml)
+    {
+      pltxt = pltxt +" ";
+    }
+    int k = 0;
+    int flag =0;
+    for (int i = 0; i<x ;i++ ) {
+      for (int j=0;j<kln;j++ ) {
+
+        if(pltxt.charAt(k)==' ')
+        {
+        mat[i][j]='$';
+        }
+        else
+        {
+        mat[i][j] = pltxt.charAt(k);
+        }
+        k++;
+      }
+    }
+    for(int i = 0 ;i <kln ;i++)
+    {
+      System.out.print(key.charAt(i)+" ");
+    }
+    System.out.println();
+    System.out.println("_______");
+    for (int i = 0; i<x ;i++ ) {
+      for (int j=0;j<kln;j++ ) {
+        System.out.print(mat[i][j]+" ");
+      }
+      System.out.println();
+    }
+
+    k =0;
+    int karr[] = new int[kln];
+    for(char i = 'a';i<='z';i++)
+    {
+      for(int j =0 ;j <kln;j++)
+      {
+        if(key.charAt(j)==i)
+        {
+          System.out.println(j);
+          karr[k++] = j;
+        }
+      }
+    }
+    System.out.println();
+    System.out.println("Cipher text");
+    String t="";
+    for (int l :karr ) {
+      for(int i = 0 ;i<x;i++)
+      {
+        t=t+mat[i][l]+"";
+      }
+      System.out.println(t);
+      t="";
+      System.out.println();
+    }
+  }
+}
+
+/*Output :-
+I:\work\fo_n>javac Trans.java
+
+I:\work\fo_n>java Trans
+Enter a key (with unique char) :
+star
+Enter plain Text :
+i repeat go behind wall no 87
+s t a r
+_______
+i $ r e
+p e a t
+$ g o $
+b e h i
+n d $ w
+a l l $
+n o $ 8
+7 $ $ $
+2
+3
+0
+1
+
+Cipher text
+raoh$l$$
+
+et$iw$8$
+
+ip$bnan7
+
+$egedlo$
+*/
