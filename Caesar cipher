@@ -1,0 +1,134 @@
+/* 
+Name     :- Hardik Raja
+Roll no  :- 24
+Subject  :- Fundamental Of Networking
+Class    :- MCA III
+
+Question :- Caesar cipher
+*/
+import java.util.*;
+class Cipher{
+  public static void main(String[] args) {
+    System.out.println("Enter your choice : \n1.Encryption\n2.Decryption ");
+    Scanner sc = new Scanner(System.in);
+    System.out.println("Enter - ");
+    int ch = sc.nextInt();
+
+    switch(ch)
+    {
+      case 1:
+        encry();
+        break;
+      case 2:
+        decry();
+        break;
+    }
+  }
+
+  static void encry()
+  {
+    Scanner sc = new Scanner(System.in);
+		System.out.println("Enter a string (plain-text) :");
+		String pltxt = sc.nextLine();
+		String ciphertext = "";
+		char ad;
+		int temp;
+		String st;
+		for (int i = 0;i<pltxt.length();i++) {
+			ad = pltxt.charAt(i);
+			st = ad+"";
+			if(st.contains(" "))
+			{
+				ciphertext=ciphertext+" ";
+				continue;
+			}
+			else
+			{
+				temp = (int)(ad);
+				if(ad=='w')
+				{
+					temp =93;
+				}
+				if(ad=='x')
+				{
+					temp =94;
+				}
+				if(ad=='y')
+				{
+					temp =95;
+				}
+				if(ad=='z')
+				{
+					temp =96;
+				}
+				temp = temp +3;
+				ad = (char) (temp);
+			}
+			ciphertext=ciphertext+ad+"";
+		}
+		System.out.println(ciphertext);
+  }
+
+  static void decry()
+  {
+    Scanner sc = new Scanner(System.in);
+		System.out.println("Enter a string (cipher-text) :");
+		String ciphertext = sc.nextLine();
+		String pltxt = "";
+		char ad;
+		int temp;
+		String st;
+		for (int i = 0;i<ciphertext.length();i++) {
+			ad = ciphertext.charAt(i);
+			st = ad+"";
+			if(st.contains(" "))
+			{
+				pltxt=pltxt+" ";
+				continue;
+			}
+			else
+			{
+				temp = (int)(ad);
+				if(ad=='a')
+				{
+					temp =123;
+				}
+				if(ad=='b')
+				{
+					temp =124;
+				}
+				if(ad=='c')
+				{
+					temp =125;
+				}
+
+				temp = temp -3;
+				ad = (char) (temp);
+			}
+			pltxt=pltxt+ad+"";
+		}
+		System.out.println(pltxt);
+  }
+
+
+}
+
+/*Output : -
+Enter your choice :
+1.Encryption
+2.Decryption
+Enter -
+1
+Enter a string (plain-text) :
+hello
+khoor
+
+Enter your choice :
+1.Encryption
+2.Decryption
+Enter -
+2
+Enter a string (cipher-text) :
+khoor
+hello
+*/
