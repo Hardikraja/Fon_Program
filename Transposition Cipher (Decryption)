@@ -1,0 +1,109 @@
+/* 
+Name     :- Hardik Raja
+Roll no  :- 24
+Subject  :- Fundamental Of Networking
+Class    :- MCA III
+
+Question :- Transposition Cipher (Decryption)
+*/
+import java.util.*;
+class TransDe{
+  public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    System.out.println("Decryption of Transposition Cipher ");
+    System.out.println("Enter key : ");
+    String key = sc.nextLine();
+    String[] cst = new String[key.length()];
+    int[] ord = new int[key.length()];
+    int k = 0;
+
+    for (int i = 0; i < key.length() ; i++ ) {
+        System.out.print("Enter strings : ");
+        cst [i] = sc.nextLine();
+    }
+
+    char[][] charr = new char[cst[0].length()][key.length()];
+
+
+    k=0;
+    int[] ordt = new int[key.length()];
+
+    
+
+    k=0;
+    for (char i = 'a'; i <='z'; i++ ) {
+      for (int j=0;j<key.length();j++ ) {
+        if(i==key.charAt(j))
+        {
+            ord[k++] = j;
+            System.out.println(j);
+        }
+      }
+    }
+    
+     k = 0;
+    for (int i = 0; i<key.length() ;i++ ) {
+    	//k = 0;
+    	for (int j = 0;j<ord.length ;j++ ) {
+    		if(i==ord[j])
+    		{
+    			for (int l = 0;l<cst[j].length() ;l++ ) {
+    				charr[l][k] = cst[j].charAt(l);		
+    			}
+    			k++;
+    			break;
+    		}
+    	}
+    }
+
+    for (int i = 0; i<charr.length ;i++ ) {
+    	for (int j = 0; j <charr[i].length ; j++ ) {
+    		System.out.print(charr[i][j]);
+    	}
+    	System.out.println();
+    }
+    
+    String str="";
+
+    for (int i = 0; i<charr.length ;i++ ) {
+    	for (int j = 0; j <charr[i].length ; j++ ) {
+    		if(charr[i][j]=='$')
+    		{
+    			str=str+" ";
+    		}
+    		else
+    		{	
+    		str=str+charr[i][j];
+    		}
+    	}
+    
+    }
+    
+
+    System.out.println("plain - text : "+str);
+  }
+}
+
+/*Output :-
+I:\work\fo_n>java TransDe
+Decryption of Transposition Cipher
+Enter key :
+star
+Enter strings : raoh$l$$
+Enter strings : et$iw$8$
+Enter strings : ip$bnan7
+Enter strings : $egedlo$
+2
+3
+0
+1
+i$re
+peat
+$go$
+behi
+nd$w
+all$
+no$8
+7$$$
+plain - text : i repeat go behind wall no 87
+*/
